@@ -2,7 +2,7 @@
 
 createDB() {
     echo 'type "exit" if you want to exit create DB'
-    read -p "Enter DB Name: " db_name
+    read -p "Enter DB Name to create: " db_name
 
     if [[ $db_name =~ ^[Ee][Xx][Ii][Tt]$ ]]
     then

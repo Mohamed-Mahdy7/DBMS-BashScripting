@@ -2,7 +2,7 @@
 
 renameDB() {
     echo 'type "exit" if you want to exit rename DB'
-    read -p "Enter DB name: " old_name
+    read -p "Enter DB name to rename: " old_name
 
     if [[ $old_name =~ ^[Ee][Xx][Ii][Tt]$ ]]
     then
