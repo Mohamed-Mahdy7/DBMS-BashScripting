@@ -14,23 +14,21 @@ dropDB() {
     then
         read -p "Are you sure You want to drop this DB? (y|n): " answer
         case $answer in
-        "y"|"Y"|[Yy][Es][Ss])
-            `rm -r "$BASE_DIR/$db_name"`
+        [Yy]|[Yy][Ee][Ss])
+            rm -r "$BASE_DIR/$db_name"
             echo "DB $db_name deleted successfully!"
             return 0
             ;;
-        "n"|"N"|[Nn][Oo])
+        [Nn]|[Nn][Oo])
             return 0
+            ;;
+        *)
+            echo "Invalid input!"
+            return 1
             ;;
         esac
     else
         echo NO DB with that name exist!
         return 1
     fi
-    case $db_name in
-    [Ee][Xx][Ii][Ss][Tt])
-        echo exiting...
-        return 0
-        ;;
-    esac
 }
