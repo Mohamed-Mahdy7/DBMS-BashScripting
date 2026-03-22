@@ -1,7 +1,14 @@
 #! /usr/bin/bash
 
 dropDB() {
+    echo 'type "exit" if you want to exit drop DB'
     read -p "Enter DataBase Name: " db_name
+
+    if [[ $db_name =~ ^[Ee][Xx][Ii][Tt]$ ]]
+    then
+        echo exiting...
+        return 0
+    fi
 
     if [[ -d "$BASE_DIR/$db_name" ]]
     then
@@ -20,4 +27,10 @@ dropDB() {
         echo NO DB with that name exist!
         return 1
     fi
+    case $db_name in
+    [Ee][Xx][Ii][Ss][Tt])
+        echo exiting...
+        return 0
+        ;;
+    esac
 }

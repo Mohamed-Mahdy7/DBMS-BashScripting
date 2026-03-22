@@ -1,7 +1,14 @@
 #! /usr/bin/bash
 
 createDB() {
-    read -p "Enter DataBase Name: " db_name
+    echo 'type "exit" if you want to exit create DB'
+    read -p "Enter DB Name: " db_name
+
+    if [[ $db_name =~ ^[Ee][Xx][Ii][Tt]$ ]]
+    then
+        echo exiting...
+        return 0
+    fi
 
     if [[ $db_name =~ ^[a-zA-Z_][a-zA-Z0-9_]*$ ]] 
     then
@@ -17,7 +24,7 @@ createDB() {
         return 0
         fi
     else
-        echo Name not valid!
+        echo Invalid name!
         echo "DB must start with letter or underscore, only letters/digits/underscores allowed"
         return 1
     fi
