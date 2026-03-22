@@ -2,7 +2,7 @@
 
 connectDB() {
     echo 'type "exit" if you want to exit connect DB'
-    read -p "Enter DB Name: " db_name
+    read -p "Enter DB Name to connect to: " db_name
 
     if [[ $db_name =~ ^[Ee][Xx][Ii][Tt]$ ]]
     then
