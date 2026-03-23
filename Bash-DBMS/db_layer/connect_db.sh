@@ -1,7 +1,8 @@
 #! /usr/bin/bash
 
 connectDB() {
-    echo 'type "exit" if you want to exit connect DB'
+    local db_name
+    echo 'type "exit" if you want to disconnect connected DB or exit this shell'
     read -p "Enter DB Name to connect to: " db_name
 
     if [[ $db_name =~ ^[Ee][Xx][Ii][Tt]$ ]]

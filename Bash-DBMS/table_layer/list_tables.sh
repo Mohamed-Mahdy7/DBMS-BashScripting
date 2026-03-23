@@ -3,7 +3,7 @@
 listTables() {
     local found=false
     
-    for table in "databases/db2"/*
+    for table in "$CURRENT_DB"/*
     do
         if [[ -f "$table" ]]
         then
