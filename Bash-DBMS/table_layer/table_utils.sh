@@ -46,6 +46,7 @@ get_col_index(){
     local table=$2
     local col_name=$3
     local meta_file="$db_path/$table.meta"
+    local index=1
     if [[ ! -f "$meta_file" ]];
     then
         echo "Error: table '$table' not found" >&2
