@@ -1,6 +1,7 @@
 #! /usr/bin/bash
 
 renameDB() {
+    local old_name
     echo 'type "exit" if you want to exit rename DB'
     read -p "Enter DB name to rename: " old_name
 
@@ -12,6 +13,7 @@ renameDB() {
 
     if [[ -d "$BASE_DIR/$old_name" ]]
     then
+        local new_name
         read -p "Enter new name: " new_name
         if [[ $new_name =~ ^[Ee][Xx][Ii][Tt]$ ]]
         then

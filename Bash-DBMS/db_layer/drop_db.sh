@@ -1,6 +1,7 @@
 #! /usr/bin/bash
 
 dropDB() {
+    local db_name
     echo 'type "exit" if you want to exit drop DB'
     read -p "Enter DB Name to drop: " db_name
 

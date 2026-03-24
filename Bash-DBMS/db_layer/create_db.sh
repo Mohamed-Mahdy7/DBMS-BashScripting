@@ -1,6 +1,7 @@
 #! /usr/bin/bash
 
 createDB() {
+    local db_name
     echo 'type "exit" if you want to exit create DB'
     read -p "Enter DB Name to create: " db_name
 
