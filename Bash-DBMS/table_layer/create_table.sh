@@ -1,13 +1,23 @@
 #! /usr/bin/bash
 
 createTable() {
-    
-    local table_name="$1"
-    local pk_col="$2"
-    col_defs=("${@:3}")
+    echo "Enter your table creation in that order: "
+    echo "<table name> <pk col> <col name>:<col type>"
+    echo "Ex) students id id:int name:str age:int email:str"
+    echo
+    read -p "Create your table : " -a input
+
+    local table_name="${input[0]}"
+    local pk_col="${input[1]}"
+    col_defs=("${input[@]:2}")
 
     local meta_file="$CURRENT_DB/$table_name.meta"
     local data_file="$CURRENT_DB/$table_name.db"
+
+    if [[ "$pk_col" == *:* ]]; then
+    echo "Error: Primary key should be column name only (like: id), not id:int"
+    return 1
+    fi
 
     if [[ -f $meta_file || -f $data_file ]]
     then
@@ -15,32 +25,36 @@ createTable() {
         return 1
     fi
 
-    # echo "Enter your table creation in that order: "
-    # echo "<table name> <pk col> <col name>:<col type>"
-    # echo "Ex) students id id:int name:str age:int email:str"
-    
+    if [[ $col_defs == "" ]]
+    then
+        echo "Error: Invalid input, make sure you entered the table columns and types!"
+        return 1
+    else
+        for col_def in "${col_defs[@]}"
+        do
+            local col_name=$(echo "$col_def" | cut -d':' -f1)
+            local col_type=$(echo "$col_def" | cut -d':' -f2)
 
-    for col_def in "${col_defs[@]}"
-    do
-        local col_name=$(echo "$col_def" | cut -d':' -f1)
-        local col_type=$(echo "$col_def" | cut -d':' -f2)
+            if [[ $col_type != "int" && $col_type != "str" ]]
+            then 
+                echo "Error: Invalid column type! Only 'int' and 'str' are allowed (no extra spaces allowed)."
+                return 1
+            fi
+        done
 
-        case $col_type in
-        "int"|"str")
-            ;;
-        *)
-            echo "Error: column type not supported! only 'int' 'str' supported"
-            return 1
-            break
-        esac
+        for col_def in "${col_defs[@]}"
+        do
+            local col_name=$(echo "$col_def" | cut -d':' -f1)
+            local col_type=$(echo "$col_def" | cut -d':' -f2)
 
-        if [[ "$col_name" == "$pk_col" ]]
-        then
-            echo "$col_name:$col_type:pk" >> "$meta_file"
-        else
-            echo "$col_name:$col_type" >> "$meta_file"
-        fi
-    done
-    
+            if [[ "$col_name" == "$pk_col" ]]
+                then
+                    echo "$col_name:$col_type:pk" >> "$meta_file"
+            else
+                echo "$col_name:$col_type" >> "$meta_file"
+            fi
+        done
+
     touch "$data_file" 
+    fi
 }

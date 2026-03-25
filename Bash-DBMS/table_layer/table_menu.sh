@@ -1,5 +1,9 @@
 #! /usr/bin/bash
 
+. ./table_layer/create_table.sh
+. ./table_layer/list_tables.sh
+. ./table_layer/drop_table.sh
+
 source "$(dirname "${BASH_SOURCE[0]}")/../record_layer/select.sh"
 
 table_menu(){
@@ -7,13 +11,13 @@ table_menu(){
         do
             case $menu in
                 "create")
-                    echo "Coming soon..."
+                    createTable
                     ;;
                 "list")
-                    echo "Coming soon..."
+                    listTables
                     ;;
                 "drop")
-                    echo "Coming soon..."
+                    dropTable
                     ;;
                 "insert_row")
                     echo "Coming soon..."

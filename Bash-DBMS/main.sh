@@ -7,6 +7,8 @@ CURRENT_DB=""
 
 . ./db_layer/db_menu.sh
 
+. ./table_layer/table_menu.sh
+
 while true
 do
     menu
