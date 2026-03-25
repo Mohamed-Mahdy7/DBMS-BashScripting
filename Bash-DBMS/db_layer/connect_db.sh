@@ -19,6 +19,7 @@ connectDB() {
         echo CURRENT_BD $CURRENT_DB
         echo Connected to $db_name
         # call table_menu here
+        table_menu
         return 0
     else
         echo "No DB with that name!"

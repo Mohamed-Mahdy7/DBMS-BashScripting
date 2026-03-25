@@ -5,7 +5,7 @@ source "$(dirname "${BASH_SOURCE[0]}")/../record_layer/select.sh"
 table_menu(){
     select menu in create list drop insert_row select_all delete_row update_row back
         do
-            case menu in
+            case $menu in
                 "create")
                     echo "Coming soon..."
                     ;;
