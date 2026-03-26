@@ -6,38 +6,40 @@
 
 source "$(dirname "${BASH_SOURCE[0]}")/../record_layer/select.sh"
 
-table_menu(){
-    select menu in create list drop insert_row select_all delete_row update_row back
-        do
-            case $menu in
-                "create")
-                    createTable
-                    ;;
-                "list")
-                    listTables
-                    ;;
-                "drop")
-                    dropTable
-                    ;;
-                "insert_row")
-                    echo "Coming soon..."
-                    ;;
-                "select_all")
-                    read -p "Enter table name: " table_name
-                    select_all "$CURRENT_DB" "$table_name"
-                    ;;
-                "delete_row")
-                    echo "Coming soon..."
-                    ;;
-                "update_row")
-                    echo "Coming soon..."
-                    ;;
-                "back")
-                    break
-                    ;;
-                *)
-                    echo "Input invalid" 
-                    ;;
-            esac
-        done
+table_menu() {
+    
+    select opt in Create List Drop Insert Select Delete Update Back
+    do
+        case $REPLY in
+        [Cc][Rr][Ee][Aa][Tt][Ee]|1)
+            createTable
+            ;;
+        [Ll][Ii][Ss][Tt]|2)
+            listTables
+            ;;
+        [Dd][Rr][Oo][Pp]|3)
+            dropTable
+            ;;
+        [Ii][Nn][Ss][Ee][Rr][Tt]|4)
+            echo "Coming soon..."
+            ;;
+        [Ss][Ee][Ll][Ee][Cc][Tt]|5)
+            read -p "Enter table name: " table_name
+            select_all "$CURRENT_DB" "$table_name"
+            ;;
+        [Dd][Ee][Ll][Ee][Tt][Ee]|6)
+            echo "Coming soon..."
+            ;;
+        [Uu][Pp][Dd][Aa][Tt][Ee]|7)
+            echo "Coming soon..."
+            ;;
+        [Ee][Xx][Ii][Tt]|8)
+            echo "exiting..."
+            return 0
+            ;;
+        *)
+            echo Input invalid!
+            echo Try Again!
+        esac
+    done
 }    
