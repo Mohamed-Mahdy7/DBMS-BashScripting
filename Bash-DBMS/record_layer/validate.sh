@@ -9,24 +9,24 @@ validate_type(){
     case $type in
     int)
         [[ "$value" =~ ^-?[0-9]+$ ]] || {
-            echo "Error: '$value' is not a valid int" >&2
+            echo "Error: '$value' is not a valid int"
             return 1
         }
         ;;
     str)
         [[ -z "$value" ]] && {
-            echo "Error: string value cannot be empty" >&2
+            echo "Error: string value cannot be empty"
             return 1
         }
         ;;
     date)
         [[ "$value" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]] || {
-            echo "Error: '$value' is not a valid date (YYY-MM-DD)" >&2
+            echo "Error: '$value' is not a valid date (YYY-MM-DD)"
             return 1
         }
         ;;
     *)
-        echo "Error: unkown type '$type'" >&2
+        echo "Error: unkown type '$type'"
         return 1
         ;;
     esac
@@ -41,7 +41,7 @@ check_pk(){
 
     if [[ ! -f "$data_file" ]];
     then
-        echo "Error: data file for '$table' not found" >&2
+        echo "Error: data file for '$table' not found"
         return 1
     fi
 
@@ -71,7 +71,7 @@ check_pk(){
 
     if [[ "$found" -eq 1 ]];
     then
-        echo "Error: primary key '$pk_value' already exists" >&2
+        echo "Error: primary key '$pk_value' already exists"
         return 1
     fi
     

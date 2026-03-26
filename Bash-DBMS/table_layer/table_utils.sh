@@ -7,7 +7,7 @@ get_columns(){
     local meta_file="$db_path/$table.meta"
     if [[ ! -f "$meta_file" ]];
     then
-        echo "Error: table '$table' not found" >&2
+        echo "Error: table '$table' not found"
         return 1
     fi
 
@@ -21,7 +21,7 @@ get_types(){
     local meta_file="$db_path/$table.meta"
     if [[ ! -f "$meta_file" ]];
     then
-        echo "Error: table '$table' not found" >&2
+        echo "Error: table '$table' not found"
         return 1
     fi
     
@@ -34,7 +34,7 @@ get_pk(){
     local meta_file="$db_path/$table.meta"
     if [[ ! -f "$meta_file" ]];
     then
-        echo "Error: table '$table' not found" >&2
+        echo "Error: table '$table' not found"
         return 1
     fi
     
@@ -49,7 +49,7 @@ get_col_index(){
     local index=1
     if [[ ! -f "$meta_file" ]];
     then
-        echo "Error: table '$table' not found" >&2
+        echo "Error: table '$table' not found"
         return 1
     fi
 
@@ -63,6 +63,6 @@ get_col_index(){
         (( index++ ))
     done < "$meta_file"
     
-    echo "Error: column '$col_name' not found" >&2
+    echo "Error: column '$col_name' not found"
     return 1
 }
