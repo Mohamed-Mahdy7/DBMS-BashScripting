@@ -5,6 +5,9 @@
 . ./table_layer/drop_table.sh
 
 source "$(dirname "${BASH_SOURCE[0]}")/../record_layer/select.sh"
+source "$(dirname "${BASH_SOURCE[0]}")/../record_layer/insert.sh"
+source "$(dirname "${BASH_SOURCE[0]}")/../record_layer/update.sh"
+source "$(dirname "${BASH_SOURCE[0]}")/../record_layer/delete.sh"
 
 table_menu() {
     
@@ -21,17 +24,20 @@ table_menu() {
             dropTable
             ;;
         [Ii][Nn][Ss][Ee][Rr][Tt]|4)
-            echo "Coming soon..."
+            read -p "Enter table name: " table_name
+            insert_row "$CURRENT_DB" "$table_name"
             ;;
         [Ss][Ee][Ll][Ee][Cc][Tt]|5)
             read -p "Enter table name: " table_name
             select_all "$CURRENT_DB" "$table_name"
             ;;
         [Dd][Ee][Ll][Ee][Tt][Ee]|6)
-            echo "Coming soon..."
+            read -p "Enter table name: " table_name
+            delete_row "$CURRENT_DB" "$table_name"
             ;;
         [Uu][Pp][Dd][Aa][Tt][Ee]|7)
-            echo "Coming soon..."
+            read -p "Enter table name: " table_name
+            update_row "$CURRENT_DB" "$table_name"
             ;;
         [Ee][Xx][Ii][Tt]|8)
             echo "exiting..."

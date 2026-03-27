@@ -9,7 +9,7 @@ select_all(){
 
     if [[ ! -f "$data_file" ]];
     then
-        echo "Error: data file for '$table' not found" >&2
+        echo "Error: data file for '$table' not found"
         return 1
     fi
 
