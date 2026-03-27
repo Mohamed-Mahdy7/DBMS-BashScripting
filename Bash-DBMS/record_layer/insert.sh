@@ -23,6 +23,8 @@ insert_row(){
     types=$(get_types "$db_path" "$table")
     pk_col=$(get_pk "$db_path" "$table")
     
+    echo Columns: $(get_columns "$db_path" "$table")
+
     read -p "Enter values (space seperated): " -a values
 
     while IFS=$'\t' read -r col_name col_type;

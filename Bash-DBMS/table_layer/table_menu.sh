@@ -29,7 +29,7 @@ table_menu() {
             ;;
         [Ss][Ee][Ll][Ee][Cc][Tt]|5)
             read -p "Enter table name: " table_name
-            select_all "$CURRENT_DB" "$table_name"
+            select_by_column "$CURRENT_DB" "$table_name"
             ;;
         [Dd][Ee][Ll][Ee][Tt][Ee]|6)
             read -p "Enter table name: " table_name
