@@ -134,7 +134,8 @@ select_where(){
         -v val="$filter_val" \
         '
         {
-            if($col == val){
+            field = tolower($col)
+            if(field == val){
                 print $0
             }
         }
@@ -153,7 +154,8 @@ select_where(){
     -v val="$filter_val" \
     '
     {
-        if($col == val){
+        field = tolower($col)
+        if(field == val){
             print $0
         }
     }

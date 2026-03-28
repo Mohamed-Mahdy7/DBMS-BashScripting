@@ -28,8 +28,29 @@ table_menu() {
             insert_row "$CURRENT_DB" "$table_name"
             ;;
         [Ss][Ee][Ll][Ee][Cc][Tt]|5)
-            read -p "Enter table name: " table_name
-            select_by_column "$CURRENT_DB" "$table_name"
+            
+            select opt in select_by_column select_where Back
+            do
+
+                case $REPLY in
+                1)
+                    read -p "Enter table name: " table_name
+                    select_by_column "$CURRENT_DB" "$table_name"
+                    ;;
+                2)
+                    read -p "Enter table name: " table_name
+                    select_where "$CURRENT_DB" "$table_name"
+                    ;;
+                3)
+                    return 0
+                    ;;        
+                *)
+                    echo Input invalid!
+                    echo Try Again!
+                    ;;
+                esac
+            done
+
             ;;
         [Dd][Ee][Ll][Ee][Tt][Ee]|6)
             read -p "Enter table name: " table_name
@@ -46,6 +67,7 @@ table_menu() {
         *)
             echo Input invalid!
             echo Try Again!
+            ;;
         esac
     done
 }    
