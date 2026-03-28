@@ -95,3 +95,67 @@ select_by_column(){
         ' "$data_file"
     }    
 }
+
+select_where(){
+    local db_path=$1
+    local table=$2
+    local data_file="$db_path/$table.db"
+
+    if [[ ! -f "$data_file" ]];
+    then
+        echo "Error: data file for '$table' not found"
+        return 1
+    fi
+
+    if [[ ! -s "$data_file" ]];
+    then
+        echo "Error: Table '$table' is empty"
+        return 0
+    fi
+
+    echo Available Columns: $(get_columns "$db_path" "$table")
+
+    read -p "Enter column to filter by: " filter_col
+    read -p "Enter value to search for: " filter_val
+
+    local header
+    header=$(get_columns "$db_path" "$table" | tr '\n' '|' | sed 's/|$//')
+    
+    local col_index
+    col_index=$(get_col_index "$db_path" "$table" "$filter_col")
+    if [[ $? -ne 0 ]]
+    then
+        return 1
+    fi
+
+    local count
+    count=$(awk -F'|' \
+        -v col="$col_index" \
+        -v val="$filter_val" \
+        '
+        {
+            if($col == val){
+                print $0
+            }
+        }
+        ' "$data_file" | wc -l
+    )
+
+    if [[ "$count" -eq 0 ]];
+    then
+        echo "No rows found where '$filter_col' = '$filter_val'"
+        return 0
+    fi
+
+    echo "$header"
+    awk -F'|' \
+    -v col="$col_index" \
+    -v val="$filter_val" \
+    '
+    {
+        if($col == val){
+            print $0
+        }
+    }
+    ' "$data_file"
+}
