@@ -56,5 +56,6 @@ createTable() {
         done
 
     touch "$data_file" 
+    echo "Table $table_name created successfully!"
     fi
 }
