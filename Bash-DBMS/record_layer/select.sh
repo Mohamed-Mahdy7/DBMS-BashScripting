@@ -125,6 +125,7 @@ select_where(){
     col_index=$(get_col_index "$db_path" "$table" "$filter_col")
     if [[ $? -ne 0 ]]
     then
+        echo "Error: column '$filter_col' not found"
         return 1
     fi
 

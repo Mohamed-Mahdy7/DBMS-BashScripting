@@ -42,6 +42,7 @@ update_row(){
     target_index=$(get_col_index "$db_path" "$table" "$target_col")
     if [[ $? -ne 0 ]];
     then
+        echo "Error: column '$target_col' not found"
         return 1
     fi
 
