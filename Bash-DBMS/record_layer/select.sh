@@ -117,6 +117,7 @@ select_where(){
 
     read -p "Enter column to filter by: " filter_col
     read -p "Enter value to search for: " filter_val
+    filter_val="${filter_val,,}"
 
     local header
     header=$(get_columns "$db_path" "$table" | tr '\n' '|' | sed 's/|$//')
